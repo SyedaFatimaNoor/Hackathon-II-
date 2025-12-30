@@ -1,0 +1,7 @@
+[project]
+name = "hackathon-todo"
+version = "0.1.0"
+description = "A robust Command-Line Interface (CLI) Todo application that serves as the foundation for future cloud-native evolution"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []

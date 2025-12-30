@@ -1,0 +1,291 @@
+---
+
+description: "Task list template for feature implementation"
+---
+
+# Tasks: CLI Todo Application
+
+**Input**: Design documents from `/specs/1-cli-todo-app/`
+**Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
+
+**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+
+**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+
+## Format: `[ID] [P?] [Story] Description`
+
+- **[P]**: Can run in parallel (different files, no dependencies)
+- **[Story]**: Which user story this belongs to (e.g., US1, US2, US3)
+- Include exact file paths in descriptions
+
+## Path Conventions
+
+- **Single project**: `src/`, `tests/` at repository root
+- **Web app**: `backend/src/`, `frontend/src/`
+- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
+- Paths shown below assume single project - adjust based on plan.md structure
+
+<!--
+  ============================================================================
+  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
+
+  The /sp.tasks command MUST replace these with actual tasks based on:
+  - User stories from spec.md (with their priorities P1, P2, P3...)
+  - Feature requirements from plan.md
+  - Entities from data-model.md
+  - Endpoints from contracts/
+
+  Tasks MUST be organized by user story so each story can be:
+  - Implemented independently
+  - Tested independently
+  - Delivered as an MVP increment
+
+  DO NOT keep these sample tasks in the generated tasks.md file.
+  ============================================================================
+-->
+
+## Phase 1: Setup (Shared Infrastructure)
+
+**Purpose**: Project initialization and basic structure
+
+- [ ] T001 Create project structure per implementation plan
+- [ ] T002 [P] Create src/models/, src/services/, src/cli/, src/lib/ directories
+- [ ] T003 [P] Create empty __init__.py files in each src/ subdirectory
+
+---
+
+## Phase 2: Foundational (Blocking Prerequisites)
+
+**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+
+**⚠️ CRITICAL**: No user story work can begin until this phase is complete
+
+Examples of foundational tasks (adjust based on your project):
+
+- [ ] T004 Create the Task data model in src/models/task.py
+- [ ] T005 Create the Task service with CRUD operations in src/services/task_service.py
+- [ ] T006 Create utility functions in src/lib/utils.py
+
+**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+
+---
+
+## Phase 3: User Story 1 - Add New Task (Priority: P1) 🎯 MVP
+
+**Goal**: Enable users to add new tasks with title and description via CLI
+
+**Independent Test**: User can select option to add a task, enter title and description, and see the task created with an auto-incremented ID and success message.
+
+### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
+
+> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [ ] T007 [P] [US1] Contract test for add task functionality in tests/contract/test_task_operations.py
+- [ ] T008 [P] [US1] Unit test for add_task function in tests/unit/test_task_service.py
+
+### Implementation for User Story 1
+
+- [ ] T009 [US1] Implement add_task function in src/services/task_service.py
+- [ ] T010 [US1] Implement CLI function to handle adding tasks in src/cli/main.py
+- [ ] T011 [US1] Add menu option for adding tasks in src/cli/main.py
+- [ ] T012 [US1] Add validation for empty titles in src/models/task.py
+- [ ] T013 [US1] Add type hints to all functions per constitution requirements
+
+**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
+
+---
+
+## Phase 4: User Story 2 - View All Tasks (Priority: P1)
+
+**Goal**: Enable users to view a list of all tasks with ID, Title, and Completion Status
+
+**Independent Test**: User can select option to view all tasks and see a formatted list showing ID, Title, and Completion Status for each task.
+
+### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
+
+- [ ] T014 [P] [US2] Contract test for view tasks functionality in tests/contract/test_task_operations.py
+- [ ] T015 [P] [US2] Unit test for list_tasks function in tests/unit/test_task_service.py
+
+### Implementation for User Story 2
+
+- [ ] T016 [US2] Implement list_tasks function in src/services/task_service.py
+- [ ] T017 [US2] Implement CLI function to handle viewing tasks in src/cli/main.py
+- [ ] T018 [US2] Add menu option for viewing tasks in src/cli/main.py
+- [ ] T019 [US2] Add formatting for task display in src/lib/utils.py
+- [ ] T020 [US2] Add type hints to all functions per constitution requirements
+
+**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
+
+---
+
+## Phase 5: User Story 3 - Update Task Details (Priority: P2)
+
+**Goal**: Enable users to update existing task's title or description by referencing its ID
+
+**Independent Test**: User can select option to update a task, provide a valid Task ID with new title or description, and see the task updated with a success message.
+
+### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
+
+- [ ] T021 [P] [US3] Contract test for update task functionality in tests/contract/test_task_operations.py
+- [ ] T022 [P] [US3] Unit test for update_task function in tests/unit/test_task_service.py
+
+### Implementation for User Story 3
+
+- [ ] T023 [US3] Implement update_task function in src/services/task_service.py
+- [ ] T024 [US3] Implement CLI function to handle updating tasks in src/cli/main.py
+- [ ] T025 [US3] Add menu option for updating tasks in src/cli/main.py
+- [ ] T026 [US3] Add type hints to all functions per constitution requirements
+
+**Checkpoint**: All user stories should now be independently functional
+
+---
+
+## Phase 6: User Story 4 - Delete Task (Priority: P2)
+
+**Goal**: Enable users to delete a task by referencing its ID with subsequent lists confirming removal
+
+**Independent Test**: User can select option to delete a task, provide a valid Task ID, see the task removed with a success message, and confirm removal in subsequent lists.
+
+### Tests for User Story 4 (OPTIONAL - only if tests requested) ⚠️
+
+- [ ] T027 [P] [US4] Contract test for delete task functionality in tests/contract/test_task_operations.py
+- [ ] T028 [P] [US4] Unit test for delete_task function in tests/unit/test_task_service.py
+
+### Implementation for User Story 4
+
+- [ ] T029 [US4] Implement delete_task function in src/services/task_service.py
+- [ ] T030 [US4] Implement CLI function to handle deleting tasks in src/cli/main.py
+- [ ] T031 [US4] Add menu option for deleting tasks in src/cli/main.py
+- [ ] T032 [US4] Add type hints to all functions per constitution requirements
+
+**Checkpoint**: All user stories should now be independently functional
+
+---
+
+## Phase 7: User Story 5 - Mark Task Complete (Priority: P2)
+
+**Goal**: Enable users to toggle a task's completion status by referencing its ID with the display updating appropriately
+
+**Independent Test**: User can select option to mark a task as complete, provide a valid Task ID, and see the task's completion status toggled with a success message.
+
+### Tests for User Story 5 (OPTIONAL - only if tests requested) ⚠️
+
+- [ ] T033 [P] [US5] Contract test for toggle complete functionality in tests/contract/test_task_operations.py
+- [ ] T034 [P] [US5] Unit test for toggle_complete function in tests/unit/test_task_service.py
+
+### Implementation for User Story 5
+
+- [ ] T035 [US5] Implement toggle_complete function in src/services/task_service.py
+- [ ] T036 [US5] Implement CLI function to handle toggling task completion in src/cli/main.py
+- [ ] T037 [US5] Add menu option for toggling task completion in src/cli/main.py
+- [ ] T038 [US5] Add type hints to all functions per constitution requirements
+
+**Checkpoint**: All user stories should now be independently functional
+
+---
+
+## Phase 8: Polish & Cross-Cutting Concerns
+
+**Purpose**: Improvements that affect multiple user stories
+
+- [ ] T039 [P] Add comprehensive docstrings to all classes and functions
+- [ ] T040 [P] Implement main application loop in src/cli/main.py
+- [ ] T041 [P] Add error handling and user feedback messages
+- [ ] T042 [P] Ensure PEP 8 compliance across all files
+- [ ] T043 [P] Run quickstart validation to ensure all features work together
+- [ ] T044 [P] Add .gitignore with Python patterns
+
+---
+
+## Dependencies & Execution Order
+
+### Phase Dependencies
+
+- **Setup (Phase 1)**: No dependencies - can start immediately
+- **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
+- **User Stories (Phase 3+)**: All depend on Foundational phase completion
+  - User stories can then proceed in parallel (if staffed)
+  - Or sequentially in priority order (P1 → P2 → P3)
+- **Polish (Final Phase)**: Depends on all desired user stories being complete
+
+### User Story Dependencies
+
+- **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
+- **User Story 2 (P1)**: Can start after Foundational (Phase 2) - May integrate with US1 but should be independently testable
+- **User Story 3 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
+- **User Story 4 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
+- **User Story 5 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
+
+### Within Each User Story
+
+- Tests (if included) MUST be written and FAIL before implementation
+- Models before services
+- Services before endpoints
+- Core implementation before integration
+- Story complete before moving to next priority
+
+### Parallel Opportunities
+
+- All Setup tasks marked [P] can run in parallel
+- All Foundational tasks marked [P] can run in parallel (within Phase 2)
+- Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
+- All tests for a user story marked [P] can run in parallel
+- Models within a story marked [P] can run in parallel
+- Different user stories can be worked on in parallel by different team members
+
+---
+
+## Parallel Example: User Story 1
+
+```bash
+# Launch all tests for User Story 1 together (if tests requested):
+Task: "Contract test for add task functionality in tests/contract/test_task_operations.py"
+Task: "Unit test for add_task function in tests/unit/test_task_service.py"
+
+# Launch all implementation tasks for User Story 1 together:
+Task: "Implement add_task function in src/services/task_service.py"
+Task: "Implement CLI function to handle adding tasks in src/cli/main.py"
+```
+
+---
+
+## Implementation Strategy
+
+### MVP First (User Story 1 Only)
+
+1. Complete Phase 1: Setup
+2. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
+3. Complete Phase 3: User Story 1
+4. **STOP and VALIDATE**: Test User Story 1 independently
+5. Deploy/demo if ready
+
+### Incremental Delivery
+
+1. Complete Setup + Foundational → Foundation ready
+2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
+3. Add User Story 2 → Test independently → Deploy/Demo
+4. Add User Story 3 → Test independently → Deploy/Demo
+5. Each story adds value without breaking previous stories
+
+### Parallel Team Strategy
+
+With multiple developers:
+
+1. Team completes Setup + Foundational together
+2. Once Foundational is done:
+   - Developer A: User Story 1
+   - Developer B: User Story 2
+   - Developer C: User Story 3
+3. Stories complete and integrate independently
+
+---
+
+## Notes
+
+- [P] tasks = different files, no dependencies
+- [Story] label maps task to specific user story for traceability
+- Each user story should be independently completable and testable
+- Verify tests fail before implementing
+- Commit after each task or logical group
+- Stop at any checkpoint to validate story independently
+- Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
